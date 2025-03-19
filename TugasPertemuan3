@@ -1,0 +1,65 @@
+def hitung_gaji(status, golongan):
+    gaji_pokok = 0
+    bonus = 0
+    
+    if status.lower() == "tetap":
+        gaji_pokok = 1000000
+        if golongan.upper() == "A":
+            bonus = 200000
+        elif golongan.upper() == "B":
+            bonus = 400000
+        elif golongan.upper() == "C":
+            bonus = 550000
+    elif status.lower() == "honor":
+        gaji_pokok = 750000
+        if golongan.upper() == "A":
+            bonus = 150000
+        elif golongan.upper() == "B":
+            bonus = 275000
+        elif golongan.upper() == "C":
+            bonus = 480000
+    
+    total_gaji = gaji_pokok + bonus
+    
+    return gaji_pokok, bonus, total_gaji
+
+def main():
+    print("=" * 40)
+    print("PROGRAM PERHITUNGAN GAJI KARYAWAN")
+    print("=" * 40)
+    
+    nama = input("Masukkan Nama: ")
+    nik = input("Masukkan NIK: ")
+    
+    while True:
+        status = input("Status (Tetap/Honor): ")
+        if status.lower() in ["tetap", "honor"]:
+            break
+        else:
+            print("Status tidak valid! Masukkan 'Tetap' atau 'Honor'")
+    
+    while True:
+        golongan = input("Golongan (A/B/C): ")
+        if golongan.upper() in ["A", "B", "C"]:
+            break
+        else:
+            print("Golongan tidak valid! Masukkan 'A', 'B', atau 'C'")
+    
+    gaji_pokok, bonus, total_gaji = hitung_gaji(status, golongan)
+    
+    print("\n" + "=" * 40)
+    print("SLIP GAJI KARYAWAN")
+    print("=" * 40)
+    print(f"Nama          : {nama}")
+    print(f"NIK           : {nik}")
+    print(f"Status        : Pegawai {status.capitalize()}")
+    print(f"Golongan      : {golongan.upper()}")
+    print("-" * 40)
+    print(f"Gaji Pokok    : Rp {gaji_pokok:,}".replace(",", "."))
+    print(f"Bonus         : Rp {bonus:,}".replace(",", "."))
+    print("-" * 40)
+    print(f"Total Gaji    : Rp {total_gaji:,}".replace(",", "."))
+    print("=" * 40)
+
+if __name__ == "__main__":
+    main()
